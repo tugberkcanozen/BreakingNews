@@ -1,6 +1,6 @@
 <h1 align=center>Breaking News 🗞 📰 </h1> 
 
-I model the data I got from a haber site and transferred it to the application with Alamofire. I created a detail page for the news and showed the pictures by downloading them with Kingfisher. I made the auto layout of the application programmatically with Snapkit. Buna ek olarak sayfa geçişlerini Hero ile yaptım. I hope you like.
+I model the data I got from a haber site and transferred it to the application with Alamofire. I created a detail page for the news and showed the pictures by downloading them with Kingfisher. I made the auto layout of the application programmatically with Snapkit.In addition, I made the page transitions with Hero. I hope you like. I hope you like.
 
 ## Technologies
 + MVVM Architecture ✅ 
