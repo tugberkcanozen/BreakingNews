@@ -5,12 +5,8 @@
 //  Created by Tuğberk Can Özen on 28.06.2022.
 //
 
-import UIKit
+import UIKit.UIViewController
 import SnapKit
-import Kingfisher
-import Alamofire
-import SparkUI
-import Layoutless
 import Hero
 
 final class ArticleDetailController: UIViewController {
@@ -34,7 +30,7 @@ final class ArticleDetailController: UIViewController {
         return label
     }()
     
-    private let detailButton: UIButton = {
+    private lazy var detailButton: UIButton = {
         let button = UIButton()
         button.detailButton()
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -62,10 +58,12 @@ final class ArticleDetailController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         enableHero()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         disableHero()
     }
 }

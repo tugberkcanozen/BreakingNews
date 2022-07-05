@@ -8,7 +8,7 @@
 import Alamofire
 
 // MARK: - ServiceProtocol
-protocol ServiceProtocol {
+protocol ServiceProtocol: AnyObject {
     func fetchArticles(onSuccess: @escaping (ArticleList?) -> Void, onError: @escaping (AFError) -> Void)
 }
 

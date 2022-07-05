@@ -5,13 +5,10 @@
 //  Created by Tuğberk Can Özen on 28.06.2022.
 //
 
-import Foundation
 import Alamofire
-import Kingfisher
-import UIKit
 
 // MARK: - View Model Protocol
-protocol ArticleViewModelProtocol {
+protocol ArticleViewModelProtocol: AnyObject {
     func fetchArticles(onSuccess: @escaping (ArticleList?) -> Void, onError: @escaping (AFError) -> Void)
     
     var articles: [Article] { get set }

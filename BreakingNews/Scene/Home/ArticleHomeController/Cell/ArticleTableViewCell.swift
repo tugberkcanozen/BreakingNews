@@ -5,8 +5,7 @@
 //  Created by Tuğberk Can Özen on 28.06.2022.
 //
 
-import UIKit
-import Kingfisher
+import UIKit.UITableViewCell
 import SnapKit
 import SparkUI
 

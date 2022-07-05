@@ -5,12 +5,9 @@
 //  Created by Tuğberk Can Özen on 28.06.2022.
 //
 
-import UIKit
-import Alamofire
+import UIKit.UIViewController
 import SnapKit
 import Lottie
-import SparkUI
-import Layoutless
 
 // MARK: - Protocols
 protocol ArticleOutPut {
@@ -20,12 +17,12 @@ protocol ArticleOutPut {
 final class ArticleHomeController: UIViewController {
     
     // MARK: - UI Elements
-    private let searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let search = UISearchController()
         return search
     }()
     
-    private let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
@@ -54,10 +51,12 @@ final class ArticleHomeController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         enableHero()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         disableHero()
     }
 }
@@ -93,20 +92,14 @@ extension ArticleHomeController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.isSearch {
-            return viewModel.searchData.count
-        }
-        return viewModel.articles.count
+        viewModel.isSearch ? viewModel.searchData.count : viewModel.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: ArticleTableViewCell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.Idetenfier.custom.rawValue) as? ArticleTableViewCell else { return  UITableViewCell() }
         
-        if viewModel.isSearch {
-            cell.saveModel(model: viewModel.searchData[indexPath.row])
-        } else {
-            cell.saveModel(model: viewModel.articles[indexPath.row])
-        }
+        viewModel.isSearch ? cell.saveModel(model: viewModel.searchData[indexPath.row])
+        : cell.saveModel(model: viewModel.articles[indexPath.row])
         return cell
     }
     
@@ -139,7 +132,7 @@ extension ArticleHomeController {
     
     func reMakeTableView() {
         tableView.snp.remakeConstraints { make in
-            make.left.right.top.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
 }
@@ -171,17 +164,16 @@ extension ArticleHomeController: UISearchControllerDelegate, UISearchResultsUpda
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text {
-            viewModel.searchedTitle(searchText: searchText)
-            if searchText.count > 2 {
-                viewModel.isSearch = true && viewModel.searchData.isEmpty == false
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
-                viewModel.isSearch = false
-                tableView.reloadData()
+        guard let searchText = searchController.searchBar.text else { return }
+        viewModel.searchedTitle(searchText: searchText)
+        if searchText.count > 2 {
+            viewModel.isSearch = true && viewModel.searchData.isEmpty == false
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
+        }else {
+            viewModel.isSearch = false
+            tableView.reloadData()
         }
     }
 }

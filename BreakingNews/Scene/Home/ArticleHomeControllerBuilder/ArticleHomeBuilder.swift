@@ -5,7 +5,7 @@
 //  Created by Tuğberk Can Özen on 29.06.2022.
 //
 
-import UIKit
+import UIKit.UIViewController
 
 // MARK: - Home Builder
 final class HomeArticleBuilder {

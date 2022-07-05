@@ -9,7 +9,7 @@ import Alamofire
 
 // MARK: - Generic Service Manager
 final class ServiceManager {
-    public static let shared: ServiceManager = ServiceManager()
+    static let shared: ServiceManager = ServiceManager()
 }
 
 extension ServiceManager {
