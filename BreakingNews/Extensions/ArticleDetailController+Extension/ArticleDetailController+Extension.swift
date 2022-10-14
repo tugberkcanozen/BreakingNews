@@ -27,7 +27,7 @@ extension UIImageView {
     func detailImageView() {
         translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
-        layer.cornerRadius = 30
+        layer.cornerRadius = 29
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 2
         heroID = "imageView"
